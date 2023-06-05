@@ -1,0 +1,44 @@
+<html>
+   <head>
+     <title>resgistration form</title>
+     <style>
+        .d{
+         padding-left:40%;
+         margin:0px;
+         border: 1px solid black;
+        }
+        legend{
+          margin:0px;
+        }
+      
+     </style>
+   </head>
+   <body >
+   <div class="d">
+      <form action="divtags.html" method="post">
+           <label > Enter your first name:</label>
+           <input type="text" name="fname"><br><br>
+           <label> Enter your last name:</label>
+           <input type="text" name="lname"><br><br>
+           <label> Enter your phone number:</label>
+           <input type="number" maxlength=10 required><br><br>
+           <label> Enter your email id:</label>
+           <input type="email" placeholder="xyz@gmail.com"><br><br>
+           <label>Enter your address:</label>
+           <textarea rows="2" cols="20"></textarea><br></br>
+           <label> Enter your Gender:</label>
+           <input type="radio" name="gender">male
+           <input type="radio" name="gender" >female<br><br>
+           <label>Choice the courses:</label><br>
+           <input type="checkbox">Java<br>
+           <input type="checkbox">python<br>
+           <input type="checkbox">Aws<br>
+           <input type="checkbox">Ml<br><br>
+           <label>Enter your Date of birth:</label>
+           <input type="date"><br>
+           <input type="submit" value="submit">
+           <input type="reset">
+      </form>
+     <div>
+   </body>
+ </html>

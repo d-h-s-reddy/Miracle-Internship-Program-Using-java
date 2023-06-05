@@ -1,0 +1,207 @@
+<html>
+   <head>
+     <title>form validation</title>
+     <script>
+        function validation(){
+           var fn=document.getElementById("fname").value;
+           localStorage.setItem('textfn',10);
+           var ln=document.getElementById("lname").value;
+           var user=document.getElementById("usr").value;
+           var ps1=document.getElementById("pswd").value;
+           var ps2=document.getElementById("pswd1").value;
+           var date=document.getElementById("datevalue").value;
+           var email=document.getElementById("em").value;
+           email=email.toLowerCase();
+           var ph=document.getElementById("number").value;
+           var gen=document.form1.gender.value;
+           var langknow=document.getElementsByName("lang");
+           var branch=document.getElementById("set").value;
+           var addr=document.getElementById("address").value;
+           var pincodes=document.getElementById("pin").value;
+           var files=document.getElementById("fi").value.split('.')[1];
+           alert(files);
+           var re=/^[a-zA-Z]*$/.test(fn);
+        
+           if((fn=="null" || fn=="" || !re)){
+              alert("Enter your first name and please don't include any special characters or numbers");
+              return false;
+           }
+           else if(ln=="null" || ln=="" || !re){
+             alert("Enter your last name and please don't include any special characters or numbers");
+             return false;
+           }
+           else if(user=="null" || user=="" || /^[0-9]*$/.test(user) || /\s/.test(user)){
+              alert("please dont enter any numbers and should not include space");
+              return fasle;
+           }
+           else if(!validatepassword(ps1)){
+              return false;
+           }
+           else if(ps1 != ps2){
+             alert("password is not matched");
+             return false;
+           }
+           else if(!(validatedate(date))){
+            return false;
+           }
+           else if(!(/^[a-z][a-z0-9._]*[@][a-z]*[.][a-z]*$/.test(email)) || email==""){
+            alert("Please enter the correct email format");
+            return false;
+           }
+           else if(!validatenumber(ph)){
+            return false;
+           }
+           else if(!validatecheckbox(langknow)){
+             alert("Select the fields");
+             return false;
+           }
+          else if(addr==""){
+            alert("The address should be atmost 50 characters only ");
+            return false;
+          }
+          else if(!validatepin(pincodes)){
+            alert("please enter the correct pin code");
+            return false;
+          }
+           else{
+             return true;
+           }
+           
+        }
+
+
+        function validatepassword(ps1){
+         // (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(ps1))
+         if(ps1 == ""){
+            alert("Please enter a password");
+            return false;
+         }
+         else if(ps1.length<8 || ps1.length>12){
+            alert("length has been excedded");
+            return false;
+         }
+         else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(ps1))){
+            alert("The password should contain atleast one Capital character,one special characterc,and one number");
+            return false;
+         }
+        else{
+         return true;
+        }
+      }
+      function validatedate(date){
+         var year=date.substring(0,4);
+         year=parseInt(year);
+         const cudate=new Date();
+         var cuyear=cudate.getFullYear();
+         if(year >= cuyear){
+            alert("please enter the correct date of birth");
+            return false;
+         }
+         else{
+            return true;
+         }
+      }
+      function validatenumber(ph){
+         if(ph.length==10){
+            if((/^[6-9][0-9]*$/.test(ph))){
+               return true;
+            }
+            else{
+               alert("please start the nuumber with 6,7,8,9");
+               return false;
+            }
+         }else{
+            alert("please enter the correct number");
+            return false;
+         }
+      }
+      function validatecheckbox(langknow){
+         var count=0;
+         for(var i=0;i<langknow.length;i++){
+               if(langknow[i].checked){
+                  count++;
+               }
+         }
+         if(count>=1){
+            return true;
+         }
+         else{
+            return false;
+         }
+      }
+
+      function validatepin(pincodes){
+         if(pincodes.length==6){
+            if(/[0-9]*$/.test(pincodes)){
+               return true;
+            }
+            else{
+               alert("please don't enter any characters or numbers");
+               return false;
+            }
+         }
+         else{
+            alert("please enter correct pin code:");
+            return false;
+         }
+      }
+      //storing the values
+      // localStorage.setItem("textfn",fn);
+      // localStorage.setItem("textln",ln);
+      // localStorage.setItem("textusr",user);
+      // localStorage.setItem("textps",ps1);
+      // localStorage.setItem("textdate",date);
+      // localStorage.setItem("textemail",email);
+      // localStorage.setItem("textph",ph);
+      // localStorage.setItem("textgen",gen);
+      // localStorage.setItem("textres",result);
+      // localStorage.setItem("textbranch",branch);
+      // localStorage.setItem("textaddr",addr);
+      // localStorage.setItem("textpin",pincode);
+     </script>
+   </head>
+   <body>
+      <h1> Registration Form </h1>
+      <form name="form1"  action="display.html" method="post" onsubmit="return validation()">
+           <label>Enter the First name:</label>
+           <input type="text" id="fname"><br>
+           <label>Enter the last name:</label>
+           <input type="text" id="lname"><br>
+           <label>User name:</label>
+           <input type="text" id="usr"><br>
+           <label>Password:</label>
+           <input type="password" id="pswd"><br>
+           <label>Confrom password:</label>
+           <input type="password" id="pswd1"><br>
+           <label>Enter the date of birth:</label>
+           <input type="date" id="datevalue" ><br>
+           <label>Enter teh email id:</label>
+           <input type="email" id="em"><br>
+           <label>Enter the Phone number:</label>
+           <input type="number" id="number" maxlength="10"><br>
+           <label>Enter the geneder:</label>
+           <input type="radio" name="gender" value="male" required>Male
+           <input type="radio" name="gender" value="femlae" required>Female<br>
+           <label>Enter the languages known:</label>
+           <input type="checkbox" name="lang" value="java" >Java
+           <input type="checkbox" name="lang" value="jdbc" >Jdbc
+           <input type="checkbox" name="lang" value="HTML" >HTML 
+           <input type="checkbox" name="lang" value="Javascript" >JavaScript<br>
+           <label>Enter the respective branch:</label>
+           <select id="set" >
+              <option value="cse">CSE</option>
+              <option value="Ece">ECE</option>
+              <option value="It">IT</option>
+              <option value="Mec">MEC</option>
+           </select><br>
+           <label>Enter the address:</label>
+           <textarea id="address" name="address" rows="3" cols="20" type="text"></textarea><br>
+           <label>Enter the pin code</label>
+           <input type="number" id="pin"><br>
+           <label>Upload your image</label>
+           <input type="file" id="fi" accept="image/*"><br>
+           <input type="submit" value="submit"> 
+           <input type="reset">
+      </form>
+   </body>
+</html>

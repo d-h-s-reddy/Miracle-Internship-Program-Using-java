@@ -1,0 +1,308 @@
+<html>
+  <head>
+     <title>form validation</title>
+  </head>
+  <script>
+    var ar=new Array(10).fill(false);
+    function fvalidation(){
+       var fn=document.getElementById("fname").value;
+       fn=fn.toLowerCase();
+       if(fn=="" || fn=="null"){
+         document.getElementById("t1").innerHTML="The name should not be empty";
+         return false;
+       }
+       else if(!(/^[a-zA-Z]*$/.test(fn))){
+          document.getElementById("t1").innerHTML="The name should not contain any special or digits";
+          return false;
+       }
+       else{
+         document.getElementById("t1").innerHTML="";
+         ar[0]="true";
+         console.log(ar[0]);
+         return true;
+       }
+    }
+    
+    function lvalidation(){
+       var ln=document.getElementById("lname").value;
+       ln=ln.toLowerCase();
+       
+       if(ln=="" || ln=="null"){
+         document.getElementById("t2").innerHTML="The name should not be empty";
+         return false;
+       }
+       else if(!(/^[a-zA-Z]*$/.test(ln))){
+          document.getElementById("t2").innerHTML="The name should not contain any special or digits";
+          return false;
+       }
+       else{
+         document.getElementById("t2").innerHTML="";
+         ar[1]="true";
+         return true;
+       }
+    }
+    
+    function uvalidation(){
+       var un=document.getElementById("uname").value;
+       if(un=="" || un=="null"){
+         document.getElementById("t3").innerHTML="The name should not be empty";
+         return false;
+       }
+       else if(/[0-9]/.test(un)){
+          document.getElementById("t3").innerHTML="The name should not contain any digits";
+          return false;
+       }
+       else if(/\s/.test(un)){
+          document.getElementById("t3").innerHTML="The name should not contain any spaces";
+          return false;
+       }
+       else{
+         document.getElementById("t3").innerHTML="";
+         ar[2]="true";
+         return true;
+       }
+    }
+    
+    function pvalidation(){
+       var p=document.getElementById("pswd").value;
+       if(p=="null" || p==""){
+         document.getElementById("t4").innerHTML="The name should not be empty";
+         return false;
+       }
+       else if(p.length<8 || p.length>12){
+       document.getElementById("t4").innerHTML="The password length should be between 8 to 12 characters";
+         return false;
+       }
+       else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(p))){
+        document.getElementById("t4").innerHTML="The password length should contain atleast one uppercase,one lowercase, one speial and one numeric value";
+         return false;
+       }
+       else{
+         document.getElementById("t4").innerHTML="";
+         ar[3]="true";
+         return true;
+       }
+    }
+    
+    function pcvalidation(){
+       var p=document.getElementById("pswd").value;
+       var cp=document.getElementById("pswd1").value;
+       if(cp=="null" || cp==""){
+         document.getElementById("t5").innerHTML="The name should not be empty";
+         return false;
+       }
+       else if(p!=cp){
+       document.getElementById("t5").innerHTML="password mismatch";
+         return false;
+       }
+       else{
+         document.getElementById("t5").innerHTML="";
+         ar[4]="true";
+         return true;
+       }
+    }
+    
+    function dcvalidation(){
+      var d=document.getElementById("datevalue").value;
+      var year=d.substring(0,4);
+      year=parseInt(year);
+      var cudate=new Date();
+      var cuyear=cudate.getFullYear();
+      if(year>=cuyear){
+         document.getElementById("t6").innerHTML="please enter the correct date of birth";
+         return false;
+       }
+       else{
+         document.getElementById("t6").innerHTML="";
+         ar[5]="true";
+         return true;
+      }
+    }
+    
+    function ecvalidation(){
+       var e=document.getElementById("em").value;
+       e=e.toLowerCase();
+       if(e=="" || e=="null"){
+          document.getElementById("t7").innerHTML="The field should not be empty";
+          return false;
+       }
+       else if(!(/\w+@\w+\.\w/.test(e))){
+          document.getElementById("t7").innerHTML="The email should be in the format of xyz@abc.com/in";
+          return false;
+       }
+       else{
+         document.getElementById("t7").innerHTML="";
+         ar[6]="true";
+         return true;
+       }
+    }
+    
+    function phvalidation(){
+      var ph=document.getElementById("ph").value;
+      if(ph.length!=10){
+          document.getElementById("t8").innerHTML="The length should be 10";
+          return false;
+      }
+      else if(!/^[6-9][0-9]*$/.test(ph) ){
+          document.getElementById("t8").innerHTML="The number should start with 6,,7,8,9 and it should not contain any alphabets and special charaters.";
+          return false;
+      }
+      else{
+        document.getElementById("t8").innerHTML="";
+        ar[7]="true";
+         return true;
+      }
+    }
+    
+    function avalidation(){
+      var address=document.getElementById("addr").value;
+      if(address.length>50){
+        document.getElementById("t12").innerHTML="The length should not exceed 50 characters";
+        return false;
+      }
+      else if(address==""){
+        document.getElementById("t12").innerHTML="The Field should not be empty";
+        return false;
+      }
+      else{
+         document.getElementById("t12").innerHTML="";
+         ar[8]="true";
+         return true;
+      }
+    }
+    
+    function pinvalidation(){
+        var pincode=document.getElementById("pin").value;
+        if(pincode.length!=6){
+          document.getElementById("t13").innerHTML="The length should be 6";
+          return false;
+      }
+      else if(!/^[0-9]*$/.test(pincode) ){
+          document.getElementById("t13").innerHTML="The number should start with 6,,7,8,9 and it should not contain any alphabets and special charaters.";
+          return false;
+      }
+      else{
+        document.getElementById("t13").innerHTML="";
+        ar[9]="true";
+        return true;
+      }
+    }
+    
+    function filevalidation(){
+      var fi=document.getElementById("fils").value;
+      var index = fi.search(/\./g);
+      var extension = fi.substring(index);
+      if(extension==".jpg" || extension==".jpeg") {
+	  document.getElementById("t14").innerHTML="";
+	  return true;
+	}
+      else {
+	document.getElementById("t14").innerHTML="Invalid files";
+	  return false;
+	}
+    }
+    function validates(){
+       for(var i=0;i<10;i++){
+         if(ar[i]==false){
+           return false;
+         }
+       }
+       return true;
+    }
+  </script>
+  <style>
+    span{
+      color:red;
+      font-size:12px;
+    }
+    tr{
+     padding-top:10px;
+    }
+  </style>
+  <body>
+  <center>
+     <table border="1">
+       <tr>
+         <td colspan="2" style="text-align:center">Registration form</td>
+       </tr>
+       <form  onsubmit="return validates()" action="display.html">
+       <tr>
+         <td><label>Enter your First name: </label></td>
+         <td><input type="text" id="fname" onblur="return fvalidation()"><br><span id="t1"></span></td>
+       </tr>
+        <tr>
+         <td><label>Enter your second name: </label></td>
+         <td><input type="text" id="lname" onblur="return lvalidation()"><br><span id="t2"></span></td>
+       </tr>
+        <tr>
+         <td><label>Enter your user name: </label></td>
+         <td><input type="text" id="uname" onblur="return uvalidation()"><br><span id="t3"></span></td>
+       </tr>
+        <tr>
+         <td><label>Enter your password: </label></td>
+         <td><input type="password" id="pswd" onblur="return pvalidation()"><br><span id="t4"></span></td>
+       </tr>
+       <tr>
+         <td><label>Enter your conform password: </label></td>
+         <td><input type="password" id="pswd1" onblur="return pcvalidation()"><br><span id="t5"></span></td>
+       </tr>
+        <tr>
+         <td><label>Enter your Date of Birth: </label></td>
+         <td><input type="date" id="datevalue" onblur="return dcvalidation()"><br><span id="t6"></span></td>
+       </tr>
+        <tr>
+         <td><label>Enter your email: </label></td>
+         <td><input type="text" id="em" onblur="return ecvalidation()"><br><span id="t7"></span></td>
+       </tr>
+       <tr>
+         <td><label>Enter your phone number: </label></td>
+         <td><input type="text" id="ph" onblur="return phvalidation()"><br><span id="t8"></span></td>
+       </tr>
+       <tr>
+         <td><label>Enter your gender: </label></td>
+         <td><input type="radio" name="gender" value="male" required >Male<br><input type="radio" name="gender" value="female"  required >Female<br><span id="t9"></span></td>
+       </tr>
+        <tr>
+         <td><label>Enter languages known: </label></td>
+         <td><input type="checkbox" name="lang" value="java" >Java<br> 
+             <input type="checkbox" name="lang" value="jdbc" >Jdbc<br>
+             <input type="checkbox" name="lang" value="HTML" >HTML<br>
+             <input type="checkbox" name="lang" value="Javascript">Javascript<br>
+             <span id="t10"></span>
+        </td>
+       </tr>
+       <tr>
+          <td><label>Enter your respective branch:</label></td>
+          <td><select id="set">
+              <option value="cse">CSE</option>
+              <option value="Ece">ECE</option>
+              <option value="It">IT</option>
+              <option value="Mec">MEC</option>
+              </select><br><span id="t11"></span>
+          </td>
+       </tr>
+        <tr>
+         <td><label>Enter your Address: </label></td>
+         <td><br><textarea id="addr" rows="3" cols="20" onblur="return avalidation()" type="text"></textarea><br>
+         <span id="t12"></span></td>
+        </tr>
+         <tr>
+         <td><label>Enter your pin code: </label></td>
+         <td><input type="text" id="pin" onblur="return pinvalidation()"><br><span id="t13"></span></td>
+       </tr>
+       <tr>
+         <td><label>Upload your documnet</label></td>
+         <td><input type="file" id="fils" onblur="return filevalidation()"><br><span id="t14"></span></td>
+         
+       </tr>
+        <tr>
+          <td colspan="2" style="text-align:center">
+          <input type="submit" value="submit">
+          <input type="reset"></td>
+        </tr>
+       </form>
+     </table>
+  </center>
+  </body>
+  
+</html>
